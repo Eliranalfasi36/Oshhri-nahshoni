@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אושרי - נחשוני | משרד עורכי דין</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-blue: #021631;
+            --secondary-blue: #04224c;
+            --gold: #cfa862;
+            --gold-light: #ebd090;
+            --text-light: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Heebo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2, 22, 49, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--gold);
+        }
+
+        .phone-nav {
+            color: var(--gold);
+            font-weight: 700;
+            direction: ltr;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(2, 22, 49, 0.85), rgba(2, 22, 49, 0.95)), url('backgroung.png') center/cover;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .hero-logo {
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Glowing Button */
+        .glow-btn {
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: var(--primary-blue);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            animation: glow 1.5s infinite alternate;
+            transition: transform 0.2s;
+        }
+
+        .glow-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px var(--gold-light), 0 0 20px var(--gold); }
+            to { box-shadow: 0 0 20px var(--gold-light), 0 0 30px var(--gold); }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 15px auto 0;
+        }
+
+        /* About */
+        .about-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #d1d5db;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--secondary-blue);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(207, 168, 98, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        /* Modal Contact Form */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--primary-blue);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--gold);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: var(--secondary-blue);
+            border: 1px solid var(--gold);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: #010d1e;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--gold);
+        }
+
+        .phones {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            direction: ltr;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <ul class="nav-links">
+            <li><a href="#home">ראשי</a></li>
+            <li><a href="#about">הגישה שלנו</a></li>
+            <li><a href="#services">תחומי התמחות</a></li>
+        </ul>
+        <div class="phone-nav">📞 053-339-0848 | 054-345-3150</div>
+    </header>
+
+    <section class="hero" id="home">
+        <img src="logon.png" alt="אושרי נחשוני משרד עורכי דין" class="hero-logo">
+        <h1>השקט הנפשי שלכם, באחריות שלנו</h1>
+        <p>אנו דואגים לכל פרט כדי שאתם לא תצטרכו. ליווי אישי, משפחתי ודיסקרטי המעניק לכם מעטפת ביטחון מלאה וייצוג חסר פשרות בכל שלב בדרך.</p>
+        <button class="glow-btn" onclick="openModal()">אנחנו כאן לשמוע</button>
+    </section>
+
+    <section id="about" style="background-color: var(--secondary-blue);">
+        <h2 class="section-title">משפחה מקצועית שעומדת מאחוריך</h2>
+        <p class="about-text">
+            במשרדנו, אנו מבינים שמאחורי כל תיק עומד אדם שעובר תקופה מורכבת. לכן, חרתנו על דגלנו לספק יחס חמים ואישי שגורם לכל לקוח להרגיש בבית. אנחנו ניקח את המושכות, נטפל בבירוקרטיה, ונילחם עבור הזכויות שלכם בנחישות, כדי להעניק לכם רשת ביטחון ותחושת אמון מלאה עד להצלחה.
+        </p>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">תחומי התמחות</h2>
+        <div class="services-grid">
+            <div class="service-card"><h3>ביטוח לאומי</h3></div>
+            <div class="service-card"><h3>תאונות עבודה</h3></div>
+            <div class="service-card"><h3>רשלנויות - נזקי גוף</h3></div>
+            <div class="service-card"><h3>משרד הביטחון</h3></div>
+            <div class="service-card"><h3>פוליסות ביטוח</h3></div>
+            <div class="service-card"><h3>תאונות דרכים</h3></div>
+            <div class="service-card"><h3>צוואות</h3></div>
+            <div class="service-card"><h3>פוליסת תלמידים</h3></div>
+            <div class="service-card"><h3>מקרקעין</h3></div>
+            <div class="service-card"><h3>ייפוי כח מתמשך</h3></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="phones">
+            נחשוני: 053-339-0848 | אושרי: 054-345-3150
+        </div>
+        <p>© כל הזכויות שמורות - אושרי נחשוני | משרד עורכי דין</p>
+    </footer>
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--gold); margin-bottom: 20px;">ספרו לנו איך נוכל לעזור</h2>
+            <form onsubmit="event.preventDefault(); closeModal();">
+                <input type="text" placeholder="שם מלא" required>
+                <input type="tel" placeholder="מספר טלפון" required>
+                <textarea rows="4" placeholder="כמה מילים על המקרה (לא חובה)"></textarea>
+                <button type="submit" class="glow-btn" style="padding: 10px; font-size: 1rem;">שליחת פנייה</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // סגירת הטופס בלחיצה מחוץ לחלון
+        window.onclick = function(event) {
+            var modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
