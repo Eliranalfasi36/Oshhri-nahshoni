@@ -249,6 +249,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
+            align-items: start;
         }
 
         .service-card {
@@ -259,9 +260,12 @@
             text-align: center;
             transition: all 0.3s;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 80px;
+            cursor: pointer;
+            position: relative;
         }
 
         .service-card:hover {
@@ -274,6 +278,40 @@
             margin: 0;
             font-size: 1.1rem;
             line-height: 1.3;
+            pointer-events: none;
+        }
+
+        .service-card .click-indicator {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 5px;
+            pointer-events: none;
+        }
+
+        .service-details {
+            display: none;
+            font-size: 0.9rem;
+            color: #d1d5db;
+            margin-top: 15px;
+            text-align: center;
+            border-top: 1px solid rgba(207, 168, 98, 0.3);
+            padding-top: 15px;
+            font-weight: 300;
+            animation: fadeIn 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .service-card.active .service-details {
+            display: block;
+        }
+
+        .service-card.active .click-indicator {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* WhatsApp Floating Button */
@@ -438,6 +476,14 @@
                 font-size: 0.7rem;
                 word-wrap: break-word;
             }
+            .service-card .click-indicator {
+                font-size: 0.6rem;
+            }
+            .service-details {
+                font-size: 0.7rem;
+                padding-top: 10px;
+                margin-top: 10px;
+            }
 
             .whatsapp-btn {
                 bottom: 20px;
@@ -521,18 +567,78 @@
     </section>
 
     <section id="services" style="background-color: var(--primary-blue);">
-        <h2 class="section-title">תחומי התמחות</h2>
+        <h2 class="section-title">תחומי התמחות (לחצו לפירוט)</h2>
         <div class="services-grid">
-            <div class="service-card"><h3>ביטוח לאומי</h3></div>
-            <div class="service-card"><h3>תאונות עבודה</h3></div>
-            <div class="service-card"><h3>רשלנויות<br>נזקי גוף</h3></div>
-            <div class="service-card"><h3>משרד הביטחון</h3></div>
-            <div class="service-card"><h3>פוליסות ביטוח</h3></div>
-            <div class="service-card"><h3>תאונות דרכים</h3></div>
-            <div class="service-card"><h3>צוואות</h3></div>
-            <div class="service-card"><h3>פוליסת תלמידים</h3></div>
-            <div class="service-card"><h3>מקרקעין</h3></div>
-            <div class="service-card"><h3>ייפוי כח מתמשך</h3></div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>ביטוח לאומי</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    הליכים מול המוסד עשויים להימשך זמן רב. אנו נייצג אתכם בוועדות הרפואיות עפ"י חוק הביטוח הלאומי, ניקח מכם את נטל הבירוקרטיה ונדאג למיצוי זכויותיכם.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>תאונות עבודה</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    נפגעתם בעבודה? עפ"י חוק הביטוח הלאומי מגיעים לכם דמי פגיעה וקצבה. אנו ננהל את ההליך מול המעסיק והמוסדות לקבלת הפיצוי המקסימלי המגיע לכם כדין.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>רשלנויות<br>נזקי גוף</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    עפ"י פקודת הנזיקין, נזקי גוף מצדיקים פיצוי הולם. משרדנו בעל ניסיון בניהול הליכים משפטיים וגיבוש חוות דעת רפואיות, כדי שאתם תוכלו להתרכז בהחלמה.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>משרד הביטחון</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    תביעות לפי חוק הנכים דורשות רגישות ומומחיות. אנו נייצג אתכם מול קצין התגמולים והוועדות להבטחת ההכרה והתגמול ההולם, ללא התעסקות מצדכם.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>פוליסות ביטוח</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    חברות ביטוח נוטות להערים קשיים. בהתאם לחוק חוזה הביטוח, ניאבק עבורכם לאכיפת הפוליסה ונדרוש את הפיצוי המלא המגיע לכם ללא פשרות.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>תאונות דרכים</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    חוק הפלת"ד מעניק פיצוי ללא שאלת אשמה. אנו נטפל בהגשת התביעה מול ביטוח החובה במהירות וביעילות כדי להבטיח פיצוי מקסימלי עבור נזקיכם.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>צוואות</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    הבטיחו את עתיד יקיריכם. משרדנו מלווה בעריכת צוואות מוקפדות עפ"י חוק הירושה, בקשות לצווי קיום וניהול עיזבונות במקצועיות, דיסקרטיות ורגישות.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>פוליסת תלמידים</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    כל תלמיד מבוטח גם מחוץ לשעות הלימודים. אנו נתנהל מול הרשות המקומית וחברת הביטוח להבטחת פיצוי כספי מהיר במקרה של פגיעה.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>מקרקעין</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    עסקאות נדל"ן מצריכות ליווי משפטי הדוק עפ"י חוק המקרקעין. אנו עורכים בדיקות מקדמיות ומלווים את העסקה בבטחה עד לרישום המלא בטאבו.
+                </div>
+            </div>
+            <div class="service-card" onclick="this.classList.toggle('active')">
+                <h3>ייפוי כח מתמשך</h3>
+                <div class="click-indicator">▼ לחצו כאן</div>
+                <div class="service-details">
+                    שלטו בעתידכם עפ"י חוק הכשרות המשפטית. משרדנו מוסמך לערוך ייפוי כוח מתמשך שיבטיח כי רצונותיכם האישיים, הרפואיים והרכושיים יכובדו.
+                </div>
+            </div>
         </div>
     </section>
 
