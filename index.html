@@ -163,11 +163,13 @@
             margin-top: 40px;
         }
 
+        /* Logo Fade-Out Fix */
         .hero-logo {
-            max-width: 240px;
+            max-width: 260px; 
             margin-bottom: 20px;
-            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
-            mask-image: radial-gradient(circle, black 50%, transparent 100%);
+            /* מסיכה אליפטית שמעלימה לגמרי את הפינות המרובעות ויוצרת טשטוש חלק למרכז */
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 75%);
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 75%);
         }
 
         .hero h1 {
@@ -418,7 +420,6 @@
             pointer-events: none;
         }
 
-        /* Here is the fix: using .expanded instead of .active */
         .service-card.expanded .service-details {
             display: block;
         }
@@ -707,7 +708,6 @@
     <section id="services" style="background-color: var(--primary-blue);">
         <h2 class="section-title reveal">תחומי התמחות (לחצו לפירוט)</h2>
         <div class="services-grid">
-            <!-- Notice the change here from toggle('active') to toggle('expanded') -->
             <div class="service-card reveal" onclick="this.classList.toggle('expanded')">
                 <h3>ביטוח לאומי</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
