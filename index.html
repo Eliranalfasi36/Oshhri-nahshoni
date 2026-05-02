@@ -117,7 +117,7 @@
             direction: ltr;
         }
 
-        /* Hero Section */
+        /* Hero Section with Video */
         .hero {
             position: relative;
             height: 100vh;
@@ -126,8 +126,41 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(2, 22, 49, 0.85), rgba(2, 22, 49, 0.95)), url('backgroung.png') center/cover;
             padding: 20px;
+            overflow: hidden; /* מונע גלילה מיותרת של הוידאו */
+        }
+
+        /* Video Setup */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* מבטיח שהוידאו יכסה הכל בלי להתעוות */
+            z-index: -2;
+        }
+
+        /* Vignette Effect */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* המרכז בהיר (30% אטימות) והשוליים כהים (95% אטימות) למראה דרמטי וקריא */
+            background: radial-gradient(circle, rgba(2, 22, 49, 0.3) 10%, rgba(2, 22, 49, 0.95) 90%);
+            z-index: -1;
+        }
+
+        /* הבטחת קדמיות לתוכן בהירו */
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-video, .video-overlay {
+            z-index: 0;
         }
 
         .hero-logo {
@@ -595,6 +628,13 @@
     </header>
 
     <section class="hero" id="home">
+        <!-- Video Background -->
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="backgroundvideo.mp4" type="video/mp4">
+        </video>
+        <!-- Vignette Effect Overlay -->
+        <div class="video-overlay"></div>
+
         <img src="logon.png" alt="אושרי נחשוני משרד עורכי דין" class="hero-logo reveal active">
         <h1 class="reveal active" style="transition-delay: 0.2s;">נפגעתם? אל תתמודדו לבד מול המערכת.</h1>
         <p class="reveal active" style="transition-delay: 0.4s;">גופים גדולים וחברות ביטוח מנסים לייאש אתכם כדי לשלם פחות. אנחנו כאן כדי להעניק לכם מעטפת ביטחון מלאה ולהילחם על כל זכות ועל כל שקל שמגיע לכם, בשקיפות ובמקצועיות ללא פשרות.</p>
