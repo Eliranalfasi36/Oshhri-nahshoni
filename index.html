@@ -136,12 +136,12 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: cover; /* מותח את הוידאו על כל המסך */
+            object-fit: cover;
             z-index: 1;
-            opacity: 0.5; /* מחליש את הוידאו */
+            opacity: 0.5;
         }
 
-        /* Vignette Effect (Dark edges, lit center) */
+        /* Vignette Effect */
         .video-overlay {
             position: absolute;
             top: 0;
@@ -149,11 +149,9 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* החשכה בצדדים, שקוף במרכז */
             background: radial-gradient(circle at center, transparent 15%, rgba(2, 22, 49, 0.8) 70%, rgba(2, 22, 49, 1) 100%);
         }
 
-        /* Container for Hero Text to ensure it stays on top */
         .hero-content {
             position: relative;
             z-index: 3;
@@ -165,11 +163,9 @@
             margin-top: 40px;
         }
 
-        /* Logo with blurred edges */
         .hero-logo {
-            max-width: 240px; /* הוקטן מ-400 */
+            max-width: 240px;
             margin-bottom: 20px;
-            /* אפקט טשטוש לקצוות הלוגו */
             -webkit-mask-image: radial-gradient(circle, black 50%, transparent 100%);
             mask-image: radial-gradient(circle, black 50%, transparent 100%);
         }
@@ -180,7 +176,7 @@
             margin-bottom: 15px;
             max-width: 800px;
             line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* עוזר לטקסט לבלוט */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero p {
@@ -198,7 +194,7 @@
             flex-wrap: wrap;
         }
 
-        /* Glowing Button */
+        /* Buttons */
         .glow-btn {
             background: linear-gradient(45deg, var(--gold), var(--gold-light));
             color: var(--primary-blue);
@@ -217,7 +213,6 @@
             transform: scale(1.05);
         }
 
-        /* Outline Button (Quiz) */
         .outline-btn {
             background: rgba(2, 22, 49, 0.6);
             backdrop-filter: blur(5px);
@@ -423,11 +418,12 @@
             pointer-events: none;
         }
 
-        .service-card.active .service-details {
+        /* Here is the fix: using .expanded instead of .active */
+        .service-card.expanded .service-details {
             display: block;
         }
 
-        .service-card.active .click-indicator {
+        .service-card.expanded .click-indicator {
             display: none;
         }
 
@@ -711,70 +707,71 @@
     <section id="services" style="background-color: var(--primary-blue);">
         <h2 class="section-title reveal">תחומי התמחות (לחצו לפירוט)</h2>
         <div class="services-grid">
-            <div class="service-card reveal" onclick="this.classList.toggle('active')">
+            <!-- Notice the change here from toggle('active') to toggle('expanded') -->
+            <div class="service-card reveal" onclick="this.classList.toggle('expanded')">
                 <h3>ביטוח לאומי</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     הליכים מול המוסד עשויים להימשך זמן רב. אנו נייצג אתכם בוועדות הרפואיות עפ"י חוק הביטוח הלאומי, ניקח מכם את נטל הבירוקרטיה ונדאג למיצוי זכויותיכם.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.1s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.1s;" onclick="this.classList.toggle('expanded')">
                 <h3>תאונות עבודה</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     נפגעתם בעבודה? עפ"י חוק הביטוח הלאומי מגיעים לכם דמי פגיעה וקצבה. אנו ננהל את ההליך מול המעסיק והמוסדות לקבלת הפיצוי המקסימלי המגיע לכם כדין.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.2s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.2s;" onclick="this.classList.toggle('expanded')">
                 <h3>רשלנויות<br>נזקי גוף</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     עפ"י פקודת הנזיקין, נזקי גוף מצדיקים פיצוי הולם. משרדנו בעל ניסיון בניהול הליכים משפטיים וגיבוש חוות דעת רפואיות, כדי שאתם תוכלו להתרכז בהחלמה.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.3s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.3s;" onclick="this.classList.toggle('expanded')">
                 <h3>משרד הביטחון</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     תביעות לפי חוק הנכים דורשות רגישות ומומחיות. אנו נייצג אתכם מול קצין התגמולים והוועדות להבטחת ההכרה והתגמול ההולם, ללא התעסקות מצדכם.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.4s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.4s;" onclick="this.classList.toggle('expanded')">
                 <h3>פוליסות ביטוח</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     חברות ביטוח נוטות להערים קשיים. בהתאם לחוק חוזה הביטוח, ניאבק עבורכם לאכיפת הפוליסה ונדרוש את הפיצוי המלא המגיע לכם ללא פשרות.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.5s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.5s;" onclick="this.classList.toggle('expanded')">
                 <h3>תאונות דרכים</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     חוק הפלת"ד מעניק פיצוי ללא שאלת אשמה. אנו נטפל בהגשת התביעה מול ביטוח החובה במהירות וביעילות כדי להבטיח פיצוי מקסימלי עבור נזקיכם.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.6s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.6s;" onclick="this.classList.toggle('expanded')">
                 <h3>צוואות</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     הבטיחו את עתיד יקיריכם. משרדנו מלווה בעריכת צוואות מוקפדות עפ"י חוק הירושה, בקשות לצווי קיום וניהול עיזבונות במקצועיות, דיסקרטיות ורגישות.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.7s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.7s;" onclick="this.classList.toggle('expanded')">
                 <h3>פוליסת תלמידים</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     כל תלמיד מבוטח גם מחוץ לשעות הלימודים. אנו נתנהל מול הרשות המקומית וחברת הביטוח להבטחת פיצוי כספי מהיר במקרה של פגיעה.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.8s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.8s;" onclick="this.classList.toggle('expanded')">
                 <h3>מקרקעין</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
                     עסקאות נדל"ן מצריכות ליווי משפטי הדוק עפ"י חוק המקרקעין. אנו עורכים בדיקות מקדמיות ומלווים את העסקה בבטחה עד לרישום המלא בטאבו.
                 </div>
             </div>
-            <div class="service-card reveal" style="transition-delay: 0.9s;" onclick="this.classList.toggle('active')">
+            <div class="service-card reveal" style="transition-delay: 0.9s;" onclick="this.classList.toggle('expanded')">
                 <h3>ייפוי כח מתמשך</h3>
                 <div class="click-indicator">▼ לחצו כאן</div>
                 <div class="service-details">
